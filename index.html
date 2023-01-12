@@ -1,9 +1,34 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
-  <head>
-    <title>Mapunt GitHub Personal Page</title>
-  </head>
-  <body>
-    <h1>Mapunt GitHub Personal Page</h1>
-  </body>
+
+<head>
+  <title>Mapunt Personal GitHub Page</title>
+  <script>
+    function drawMandel() {
+      var mandel = document.getElementById("mandel");
+      var ctx = mandel.getContext("2d");
+      var colors = ["#00F", "#FFF", "#90F", "#70D", "#407", "#224", "#632",
+        "#A41", "#F00", "#F52", "#F75", "#EA8", "#953", "#333", "#000"];
+      for (var y = 0; y < 1280; y++) {
+        for (var x = 0; x < 1024; x++) {
+          var z = { a: (x - 525) / 260, b: (y - 300) / 220 };
+          var i = 0, z2 = z;
+          for (i = 0; i < colors.length - 1; i++) {
+            z2 = { a: z2.a * z2.a - z2.b * z2.b + z.a, b: 2 * z2.a * z2.b + z.b };
+            if (z2.a * z2.a + z2.b * z2.b > 4) break;
+          }
+          ctx.fillStyle = colors[i];
+          ctx.fillRect(x, y, 1, 1);
+        }
+      }
+    } 
+  </script>
+</head>
+
+<body onload="drawMandel()">
+  <h1>Welcome</h1>
+  <canvas id="mandel" width="1280" height="1024" unselectable="on" class="unselectable">
+  </canvas>
+</body>
+
 </html>
